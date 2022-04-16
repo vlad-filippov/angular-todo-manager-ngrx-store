@@ -1,0 +1,58 @@
+<h1 class="text-center my-5">ToDo Manager</h1>
+
+<div class="container my-5">
+  <div *ngIf="loader$ | async" @fadeIn class="loader-block">
+    <i class='bx bx-loader-alt bx-spin bx-rotate-90'></i>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-10">
+      <input type="text"
+             class="form-control"
+             placeholder="Add todo"
+             [(ngModel)]="taskName">
+    </div>
+
+    <div class="col-2 text-right">
+      <button type="submit"
+              class="btn btn-primary"
+              [disabled]="!taskName"
+              (click)="addTodo()">
+        <i class='bx bx-plus'></i> Add task
+      </button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Todo Name</th>
+      <th class="text-center">Status</th>
+      <th class="text-right">Actions</th>
+    </tr>
+    </thead>
+  </table>
+  <div class="scroll-block">
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let todo of todoList$ | async; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td [ngStyle]="{'text-decoration': todo.done ? 'line-through' : ''}">{{ todo.name }}</td>
+        <td>
+          <i [ngClass]="todo.done ? 'bx bxs-check-circle' : 'bx bxs-x-circle'"></i>
+        </td>
+        <td>
+          <button class="btn mr-1"
+                  [ngClass]="[!todo.done ? 'btn-success' : 'btn-secondary']"
+                  (click)="changeTodoStatus(todo.id, !todo.done)">
+            <span *ngIf="!todo.done">Done</span>
+            <span *ngIf="todo.done">In progress</span>
+          </button>
+          <button class="btn btn-danger" (click)="removeTodo(todo.id)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
