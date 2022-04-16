@@ -3,14 +3,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../index';
 import * as fromActions from '../actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { TodoService } from '../../todo.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HrCreateEffects {
+export class TodoEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly store: Store<fromStore.RootState>,

@@ -2,8 +2,7 @@ import { createSelector } from '@ngrx/store';
 import { RootState } from '../reducers';
 import * as fromReducer from '../reducers/todo.reducer';
 
-export const getTodoState = (state: RootState) =>
-  state.todo;
+export const getTodoState = (state: RootState) => state.todo;
 
 export const Loader = createSelector(
   getTodoState,

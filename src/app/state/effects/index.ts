@@ -1,5 +1,5 @@
-import { HrCreateEffects } from './todo.effects';
+import { TodoEffects } from './todo.effects';
 
 export const effects: any[] = [
-  HrCreateEffects
+  TodoEffects
 ];
